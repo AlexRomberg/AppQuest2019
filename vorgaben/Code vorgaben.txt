@@ -1,0 +1,39 @@
+App-Quest: Formale Abmachungen
+
+Kommentarsprache
+    EN
+
+Elementbenennung
+    __Name: 
+        lb = Label
+        tb = Textbox
+        bt = Button
+    Bsp. tbInput
+
+Geschweifte Klammern
+    if () {
+
+    }
+    ---------
+    if ()
+    {
+
+    }
+
+Variablen benennungen
+    static: gross   gross
+    global: gross   klein
+    local:  klein   klein
+
+Kommentare
+    //------------------------------
+    // Beschreibung         
+    //------------------------------
+
+    //------------------------------
+    // Konvertiert Text zu Zahl
+    //------------------------------
+
+Methoden benennungen
+    Verb    klein
+    Name    gross
