@@ -7,12 +7,15 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#2B2B2B"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="35dp">
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Space
             android:layout_width="match_parent"
@@ -53,7 +56,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#525252"
-            android:onClick="scanQRCode"
             android:shadowColor="#00000000"
             android:text="QR-Code scannen"
             android:textColor="@android:color/white" />
