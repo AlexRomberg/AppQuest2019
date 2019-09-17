@@ -4,14 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.*;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    Button btLog;
+    Button btLog, btNewPicture;
     EditText tbInput;
+    ImageView ivPicture;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +24,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         btLog = findViewById(R.id.btLog);
+        btNewPicture = findViewById(R.id.btNewPicture);
         tbInput = findViewById(R.id.tbInput);
-
+        ivPicture = findViewById(R.id.imageView);
     }
 
     protected void onResume() {
@@ -28,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //Adds eventlisteners
         btLog.setOnClickListener(this);
+        btNewPicture.setOnClickListener(this);
     }
 
     //Sends string to logbuch application
@@ -49,6 +56,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v.getId() == btLog.getId()) {
             String logMessage = tbInput.getText().toString();
             log(logMessage);
+            tbInput.setText("");
+        } else if (v.getId() == btNewPicture.getId()) {
+            dispatchTakePictureIntent();
         }
     }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            ivPicture.setImageBitmap(imageBitmap);
+        }
+    }
+
 }
