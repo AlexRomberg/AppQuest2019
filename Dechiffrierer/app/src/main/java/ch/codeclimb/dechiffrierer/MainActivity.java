@@ -78,4 +78,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    private Bitmap applyFilter(Bitmap bitmap) {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        int[] data = new int[width * height];
+
+        bitmap.getPixels(data, 0, width, 0, 0, width, height);
+
+        // Hier können die Pixel im data-array bearbeitet und
+        // anschliessend damit ein neues Bitmap erstellt werden
+
+        for (int i = 0; i < data.length; i ++){
+            data[i] = data[i];
+            tbInput.setText(""+data);
+        }
+
+
+        return Bitmap.createBitmap(data, width, height, Bitmap.Config.ARGB_8888);
+    }
 }
