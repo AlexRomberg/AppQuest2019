@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        String logmessage = "{\n  \"task\": \"Metalldetektor\",\n  \"solution\": \"" + qrCode + "\"\n}";
+        String logmessage = "{\n  \"task\": \"Dechiffrierer\",\n  \"solution\": \"" + qrCode + "\"\n}";
         intent.putExtra("ch.appquest.logmessage", logmessage);
         startActivity(intent);
     }
