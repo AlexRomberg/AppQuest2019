@@ -20,7 +20,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btLog = findViewById(R.id.btLog);
         tbInput = findViewById(R.id.tbInput);
-        
+
+    }
+
+    protected void onResume() {
+        super.onResume();
+
+        //Adds eventlisteners
+        btLog.setOnClickListener(this);
     }
 
     //Sends string to logbuch application
@@ -39,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-
+        if (v.getId() == btLog.getId()) {
+            String logMessage = tbInput.getText().toString();
+            log(logMessage);
+        }
     }
 }
