@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     //Sends string to logbuch application
-    private void log(String qrCode) {
+    private void log(String message) {
         Intent intent = new Intent("ch.appquest.intent.LOG");
 
         if (getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).isEmpty()) {
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             return;
         }
 
-        String logmessage = "{\n  \"task\": \"Metalldetektor\",\n  \"solution\": \"" + qrCode + "\"\n}";
+        String logmessage = "{\n  \"task\": \"Metalldetektor\",\n  \"solution\": \"" + message + "\"\n}";
         intent.putExtra("ch.appquest.logmessage", logmessage);
         startActivity(intent);
     }
