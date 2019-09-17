@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -73,8 +74,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            ivPicture.setImageBitmap(imageBitmap);
+            Bitmap bmPicture = applyFilter((Bitmap) extras.get("data"));
+            ivPicture.setImageBitmap(bmPicture);
         }
     }
 
@@ -85,14 +86,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         bitmap.getPixels(data, 0, width, 0, 0, width, height);
 
-        // Hier können die Pixel im data-array bearbeitet und
-        // anschliessend damit ein neues Bitmap erstellt werden
+        for (int i = 0; i < data.length; i++) {
+            int A = (data[i] >> 24) & 0xff; // or color >>> 24
+            int R = (data[i] >> 16) & 0xff;
+            int G = (data[i] >> 8) & 0xff;
+            int B = (data[i]) & 0xff;
+            G = 0;
+            B = 0;
+            data[i] = (A & 0xff) << 24 | (R & 0xff) << 16 | (G & 0xff) << 8 | (B & 0xff);
 
-        for (int i = 0; i < data.length; i ++){
-            data[i] = data[i];
-            tbInput.setText(""+data);
         }
-
 
         return Bitmap.createBitmap(data, width, height, Bitmap.Config.ARGB_8888);
     }
