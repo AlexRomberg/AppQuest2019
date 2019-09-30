@@ -6,4 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".editPicture">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#404040"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="53dp"
+        tools:layout_editor_absoluteY="35dp">
+
+        <ImageView
+            android:id="@+id/ivPicture"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:maxHeight="400dp"
+            tools:srcCompat="@tools:sample/avatars[3]" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30px"
+            android:background="#FF404040"
+            android:orientation="vertical"
+            android:padding="10px">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Helligkeit"
+                android:layout_marginLeft="25px"
+                android:textColor="#FFFFFF"
+                android:textSize="10pt" />
+
+            <SeekBar
+                android:id="@+id/sbBrightnes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="255"
+                android:progress="255" />
+
+            <Button
+                android:id="@+id/btBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="5px"
+                android:layout_marginRight="20px"
+                android:background="#2E2E2E"
+                android:text="Speichern"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
