@@ -45,6 +45,19 @@
                 android:max="255"
                 android:progress="255" />
 
+            <Switch
+                android:id="@+id/swFilter"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginLeft="25px"
+                android:showText="true"
+                android:switchTextAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:text="Rot-Weiss Filter"
+                android:textColor="#FFFFFF"
+                android:textOff="O"
+                android:textOn="I"
+                android:textSize="20sp" />
+
             <Button
                 android:id="@+id/btBack"
                 android:layout_width="wrap_content"

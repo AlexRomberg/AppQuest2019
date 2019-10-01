@@ -7,17 +7,24 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.*;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import java.nio.channels.InterruptedByTimeoutException;
 
-    //global views
-    Button btLog, btNewPicture;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, MenuItem.OnMenuItemClickListener {
+
+    //global objects
+    Button btLog;
     EditText tbInput;
-    ImageView ivPicture;
-    Bitmap bmPicture;
+    ImageView ivPicture, ivPlaceholder;
+    Bitmap bmPicture, bmOriginal;
+    TextView tvStatus;
+    boolean RedFilter = false;
+    int Brightnes = 255;
 
     static final int REQUEST_IMAGE_CAPTURE = 1, REQUEST_IMAGE_EDIT = 2;
 
@@ -29,9 +36,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //initializes Views
         btLog = findViewById(R.id.btLog);
-        btNewPicture = findViewById(R.id.btNewPicture);
         tbInput = findViewById(R.id.tbInput);
         ivPicture = findViewById(R.id.imageView);
+        ivPlaceholder = findViewById(R.id.ivPlaceholder);
+        tvStatus = findViewById(R.id.tvStatus);
     }
 
     //is executed when app gets started
@@ -40,9 +48,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //Adds eventlisteners
         btLog.setOnClickListener(this);
-        btNewPicture.setOnClickListener(this);
         ivPicture.setOnClickListener(this);
     }
+
+    //Adds optionmenu to app
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuItem menuItem = menu.add("Neues Bild aufnehmen");
+        menuItem.setOnMenuItemClickListener(this);
+        return super.onCreateOptionsMenu(menu);
+    }
+
 
     //Sends string to logbuch-application
     private void log(String qrCode) {
@@ -68,11 +84,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             log(logMessage);
             tbInput.setText("");
 
-        } else if (v.getId() == btNewPicture.getId()) {
-
-            //"new picture" button pressed
-            dispatchTakePictureIntent();
-
         } else if (v.getId() == ivPicture.getId()) {
 
             //imageview pressed
@@ -97,13 +108,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //new picture intent
             Bundle extras = data.getExtras();
             bmPicture = applyFilter((Bitmap) extras.get("data"));
+            bmOriginal = bmPicture;
             ivPicture.setImageBitmap(bmPicture);
+            tvStatus.setText("Auf Bild tippen um es zu bearbeiten.");
+            ivPlaceholder.setVisibility(View.INVISIBLE);
+            Brightnes = 255;
+            RedFilter = false;
 
         } else if (requestCode == REQUEST_IMAGE_EDIT && resultCode == RESULT_OK) {
 
             //edit picture intent
             Bundle extras = data.getExtras();
-            bmPicture = (Bitmap) extras.get("RETURNIMAGE");
+            bmPicture = (Bitmap) extras.get("IMAGE");
+            Brightnes = (int) extras.get("BRIGHTNES");
+            RedFilter = (boolean) extras.get("REDFILTER");
             ivPicture.setImageBitmap(bmPicture);
 
         }
@@ -142,7 +160,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (bmPicture != null) {
             Intent intent = new Intent(this, editPicture.class);
             intent.putExtra("IMAGE", bmPicture);
+            intent.putExtra("ORIGINAL", bmOriginal);
+            intent.putExtra("BRIGHTNES", Brightnes);
+            intent.putExtra("REDFILTER", RedFilter);
             startActivityForResult(intent, REQUEST_IMAGE_EDIT);
+        } else {
+            dispatchTakePictureIntent();
         }
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        dispatchTakePictureIntent();
+        return true;
     }
 }
