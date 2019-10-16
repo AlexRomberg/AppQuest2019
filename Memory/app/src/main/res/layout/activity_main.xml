@@ -16,6 +16,7 @@
         <TextView
             android:layout_width="174dp"
             android:layout_height="54dp"
+            android:layout_gravity="center"
             android:fontFamily="monospace"
             android:text="MEMMORY"
             android:textAlignment="center"
@@ -32,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                tools:srcCompat="@tools:sample/avatars[2]" />
+                tools:srcCompat="@tools:sample/avatars[3]" />
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -59,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                tools:srcCompat="@tools:sample/avatars[2]" />
+                tools:srcCompat="@tools:sample/avatars[3]" />
         </LinearLayout>
     </LinearLayout>
 
