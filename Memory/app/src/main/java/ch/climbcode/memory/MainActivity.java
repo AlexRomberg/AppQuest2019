@@ -4,18 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 
 import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
 
 public class MainActivity extends AppCompatActivity  {
-
+    LinearLayout contentGroups [] = new LinearLayout [1];
 
     //is started when app gets created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        creatContentGroup();
     }
 
     public void takeQrCodePicture() {
@@ -27,6 +29,9 @@ public class MainActivity extends AppCompatActivity  {
         integrator.initiateScan();
     }
 
+    public void creatContentGroup(){
+
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == IntentIntegrator.REQUEST_CODE
