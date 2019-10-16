@@ -10,6 +10,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -44,24 +45,31 @@ public class MainActivity extends AppCompatActivity {
 
     public void takeQrCodePicture() {
         IntentIntegrator integrator = new IntentIntegrator(this);
-        //integrator.setCaptureActivity(MyCaptureActivity.class);
-        //integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
+        integrator.setCaptureActivity(MyCaptureActivity.class);
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
         integrator.setOrientationLocked(false);
         integrator.addExtra(Intents.Scan.BARCODE_IMAGE_ENABLED, true);
         integrator.initiateScan();
     }
 
     public void createContentGroup() {
-        for (int i = 0; i < 2; i++) {
-            ImageView ivImage = new ImageView(this);
-            ivImage.setLayoutParams(new LinearLayout.LayoutParams(Resources.getSystem().getDisplayMetrics().widthPixels/2, ViewGroup.LayoutParams.MATCH_PARENT));
-            ivImage.setImageResource(R.drawable.plus);
-            images[0][i] = ivImage;
-            contentGroups[0].addView(images[0][i]);
-        }
         contentGroups[0]= new LinearLayout(this);
         contentGroups[0].setOrientation(LinearLayout.HORIZONTAL);
-        contentGroups[0].setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300));
+        contentGroups[0].setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 400));
+        for (int i = 0; i < 2; i++) {
+            ImageView ivImage = new ImageView(this);
+            ivImage.setLayoutParams(new LinearLayout.LayoutParams(300, ViewGroup.LayoutParams.MATCH_PARENT));
+            ivImage.setImageResource(R.drawable.plus);
+            images[0][i] = ivImage;
+            texts[0][i] = new TextView(this);
+            texts[0][i].setText("TEXT");
+            imageTextGroups[0][i] = new LinearLayout(this);
+            imageTextGroups[0][i].setOrientation(LinearLayout.VERTICAL);
+            imageTextGroups[0][i].setLayoutParams(new ViewGroup.LayoutParams(Resources.getSystem().getDisplayMetrics().widthPixels/2, 300));
+            imageTextGroups[0][i].addView(images[0][i]);
+            imageTextGroups[0][i].addView(texts[0][i]);
+            contentGroups[0].addView(imageTextGroups[0][i]);
+        }
         llContentGroupHolder.addView(contentGroups[0]);
 
     }
