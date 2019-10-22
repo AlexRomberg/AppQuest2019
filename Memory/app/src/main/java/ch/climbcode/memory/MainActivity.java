@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuItem menuItem = menu.add("Neues Bild aufnehmen");
+        MenuItem menuItem = menu.add("Log");
         menuItem.setOnMenuItemClickListener(this);
         return super.onCreateOptionsMenu(menu);
     }
