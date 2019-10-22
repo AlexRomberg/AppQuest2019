@@ -1,10 +1,14 @@
 package ch.climbcode.memory;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -17,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -25,15 +30,15 @@ import java.io.LineNumberReader;
 
 import static android.content.Context.ACTIVITY_SERVICE;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     LinearLayout llContentGroupHolder;
     LinearLayout contentGroups[] = new LinearLayout[1];
     LinearLayout imageTextGroups[][] = new LinearLayout[1][2];
     ImageView images[][] = new ImageView[1][2];
     TextView texts[][] = new TextView[1][2];
+    int id = 0;
 
-    //is started when app gets created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,33 +50,36 @@ public class MainActivity extends AppCompatActivity {
 
     public void takeQrCodePicture() {
         IntentIntegrator integrator = new IntentIntegrator(this);
-        integrator.setCaptureActivity(MyCaptureActivity.class);
-        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
+        //integrator.setCaptureActivity(MyCaptureActivity.class);
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
         integrator.setOrientationLocked(false);
         integrator.addExtra(Intents.Scan.BARCODE_IMAGE_ENABLED, true);
         integrator.initiateScan();
     }
 
     public void createContentGroup() {
+
         contentGroups[0]= new LinearLayout(this);
         contentGroups[0].setOrientation(LinearLayout.HORIZONTAL);
         contentGroups[0].setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 400));
         for (int i = 0; i < 2; i++) {
             ImageView ivImage = new ImageView(this);
-            ivImage.setLayoutParams(new LinearLayout.LayoutParams(300, ViewGroup.LayoutParams.MATCH_PARENT));
+            ivImage.setLayoutParams(new LinearLayout.LayoutParams(300, 300));
             ivImage.setImageResource(R.drawable.plus);
+            ivImage.setOnClickListener(this);
             images[0][i] = ivImage;
-            texts[0][i] = new TextView(this);
-            texts[0][i].setText("TEXT");
+            TextView tvText = new TextView(this);
+            tvText.setText("TEXT");
+            tvText.setLayoutParams(new LinearLayout.LayoutParams(300, ViewGroup.LayoutParams.MATCH_PARENT));
+            texts[0][i] = tvText;
             imageTextGroups[0][i] = new LinearLayout(this);
             imageTextGroups[0][i].setOrientation(LinearLayout.VERTICAL);
-            imageTextGroups[0][i].setLayoutParams(new ViewGroup.LayoutParams(Resources.getSystem().getDisplayMetrics().widthPixels/2, 300));
+            imageTextGroups[0][i].setLayoutParams(new ViewGroup.LayoutParams(Resources.getSystem().getDisplayMetrics().widthPixels/2, 400));
             imageTextGroups[0][i].addView(images[0][i]);
             imageTextGroups[0][i].addView(texts[0][i]);
             contentGroups[0].addView(imageTextGroups[0][i]);
         }
         llContentGroupHolder.addView(contentGroups[0]);
-
     }
 
     @Override
@@ -83,9 +91,18 @@ public class MainActivity extends AppCompatActivity {
             String path = extras.getString(Intents.Scan.RESULT_BARCODE_IMAGE_PATH);
 
             // Ein Bitmap zur Darstellung erhalten wir so:
-            // Bitmap bmp = BitmapFactory.decodeFile(path)
+            Bitmap bmp = BitmapFactory.decodeFile(path);
+            ImageView iv = findViewById(id);
+            iv.setImageBitmap(bmp);
 
             String code = extras.getString(Intents.Scan.RESULT);
+            Toast.makeText(getApplicationContext(), code, Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        takeQrCodePicture();
+        id = v.getId();
     }
 }
