@@ -16,6 +16,8 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -31,14 +33,14 @@ import java.io.LineNumberReader;
 
 import static android.content.Context.ACTIVITY_SERVICE;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, MenuItem.OnMenuItemClickListener {
 
     LinearLayout llContentGroupHolder;
     LinearLayout contentGroups[] = new LinearLayout[1];
     LinearLayout imageTextGroups[][] = new LinearLayout[1][2];
     ImageView images[][] = new ImageView[1][2];
     TextView texts[][] = new TextView[1][2];
-    int id = 0;
+    int xView = 0, yView = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,19 +55,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public String writeText(){
         String textLog = "";
         for (int i = 0; i < texts.length; i++) {
-                if (texts[i][0].getTextSize() > 0 || texts[i][1].getTextSize() > 0) {
+                if (texts[i][0].getText().length() > 0 || texts[i][1].getText().length() > 0) {
                    String textMemory = (String)texts[i][0].getText();
                    String textMemory2 = (String)texts[i][1].getText();
                    if(i != 0) {
-                       textLog += "[" + textMemory + "," + textMemory2 + "]";
+                       textLog += ", ";
                    }
-                    textLog += ", [" + textMemory + "," + textMemory2 + "]";
+                    textLog += "[" + textMemory + "," + textMemory2 + "]";
                 }
         } return textLog;
     }
 
     //log message sent
-    private void log(String textMemory) {
+    private void log() {
         Intent intent = new Intent("ch.appquest.intent.LOG");
 
         if (getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).isEmpty()) {
@@ -95,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         }
-        return   return new int[]{-1, -1};
+        return new int[]{-1, -1};
     }
     public void createContentGroup() {
 
@@ -109,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ivImage.setOnClickListener(this);
             images[0][i] = ivImage;
             TextView tvText = new TextView(this);
-            tvText.setText("TEXT");
+            //tvText.setText("TEXT");
             tvText.setLayoutParams(new LinearLayout.LayoutParams(300, ViewGroup.LayoutParams.MATCH_PARENT));
             texts[0][i] = tvText;
             imageTextGroups[0][i] = new LinearLayout(this);
@@ -123,6 +125,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuItem menuItem = menu.add("Neues Bild aufnehmen");
+        menuItem.setOnMenuItemClickListener(this);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == IntentIntegrator.REQUEST_CODE
                 && resultCode == RESULT_OK) {
@@ -132,17 +141,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             // Ein Bitmap zur Darstellung erhalten wir so:
             Bitmap bmp = BitmapFactory.decodeFile(path);
-            ImageView iv = findViewById(id);
-            iv.setImageBitmap(bmp);
+            images[xView][yView].setImageBitmap(bmp);
+
 
             String code = extras.getString(Intents.Scan.RESULT);
+            texts[xView][yView].setText(code);
             Toast.makeText(getApplicationContext(), code, Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
     public void onClick(View v) {
+        int[] searching = convertIdToXY(v.getId());
+        if (searching[0] >= 0)
+        {
+            xView = searching[0];
+            yView = searching[1];
+        }
         takeQrCodePicture();
-        id = v.getId();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        log();
+        return true;
     }
 }
