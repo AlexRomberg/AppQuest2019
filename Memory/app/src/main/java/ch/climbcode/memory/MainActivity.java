@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -43,6 +45,35 @@ public class MainActivity extends AppCompatActivity {
         createContentGroup();
     }
 
+    //text of pictures getting prepared
+    public String writeText(){
+        String textLog = "";
+        for (int i = 0; i < texts.length; i++) {
+                if (texts[i][0].getTextSize() > 0 || texts[i][1].getTextSize() > 0) {
+                   String textMemory = (String)texts[i][0].getText();
+                   String textMemory2 = (String)texts[i][1].getText();
+                   if(i != 0) {
+                       textLog += "[" + textMemory + "," + textMemory2 + "]";
+                   }
+                    textLog += ", [" + textMemory + "," + textMemory2 + "]";
+                }
+        } return textLog;
+    }
+
+    //log message sent
+    private void log(String textMemory) {
+        Intent intent = new Intent("ch.appquest.intent.LOG");
+
+        if (getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).isEmpty()) {
+            Toast.makeText(this, "Logbook App not Installed", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        String logmessage = "{\n  \"task\": \"Memory\",\n  \"solution\": ["+writeText()+"]\n}";
+        intent.putExtra("ch.appquest.logmessage", logmessage);
+        startActivity(intent);
+
+    }
     public void takeQrCodePicture() {
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setCaptureActivity(MyCaptureActivity.class);

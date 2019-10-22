@@ -19,7 +19,7 @@
             android:layout_height="54dp"
             android:layout_gravity="center"
             android:fontFamily="monospace"
-            android:text="MEMMORY"
+            android:text="@string/memmory"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="36sp" />
