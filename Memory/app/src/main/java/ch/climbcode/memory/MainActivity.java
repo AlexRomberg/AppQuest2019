@@ -30,16 +30,16 @@ import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
 
 import java.io.LineNumberReader;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import static android.content.Context.ACTIVITY_SERVICE;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, MenuItem.OnMenuItemClickListener {
 
     LinearLayout llContentGroupHolder;
-    LinearLayout contentGroups[] = new LinearLayout[1];
-    LinearLayout imageTextGroups[][] = new LinearLayout[1][2];
-    ImageView images[][] = new ImageView[1][2];
-    TextView texts[][] = new TextView[1][2];
+    ArrayList<ArrayList<ImageView>> images = new ArrayList<>();
+    ArrayList<ArrayList<TextView>> texts = new ArrayList<>();
     int xView = 0, yView = 0;
 
     @Override
@@ -52,18 +52,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //text of pictures getting prepared
-    public String writeText(){
+    public String writeText() {
         String textLog = "";
-        for (int i = 0; i < texts.length; i++) {
-                if (texts[i][0].getText().length() > 0 || texts[i][1].getText().length() > 0) {
-                   String textMemory = (String)texts[i][0].getText();
-                   String textMemory2 = (String)texts[i][1].getText();
-                   if(i != 0) {
-                       textLog += ", ";
-                   }
-                    textLog += "[" + textMemory + "," + textMemory2 + "]";
+        for (int i = 0; i < texts.size(); i++) {
+            int lenth1 = texts.get(i).get(0).getText().length(), lenth2 = texts.get(i).get(1).getText().length();
+            if (lenth1 > 0 && lenth2 > 0) {
+                String textMemory = (String) texts.get(i).get(0).getText();
+                String textMemory2 = (String) texts.get(i).get(1).getText();
+                if (i != 0) {
+                    textLog += ", ";
                 }
-        } return textLog;
+                textLog += "[" + textMemory + "," + textMemory2 + "]";
+            }
+        }
+        return textLog;
     }
 
     //log message sent
@@ -75,11 +77,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        String logmessage = "{\n  \"task\": \"Memory\",\n  \"solution\": ["+writeText()+"]\n}";
+        String logmessage = "{\n  \"task\": \"Memory\",\n  \"solution\": [" + writeText() + "]\n}";
         intent.putExtra("ch.appquest.logmessage", logmessage);
         startActivity(intent);
 
     }
+
     public void takeQrCodePicture() {
         IntentIntegrator integrator = new IntentIntegrator(this);
         //integrator.setCaptureActivity(MyCaptureActivity.class);
@@ -89,39 +92,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         integrator.initiateScan();
     }
 
-    public int [] convertIdToXY (int id) {
-        for (int x = 0; x < texts.length; x++) {
+    public int[] convertIdToXY(int id) {
+        for (int x = 0; x < texts.size(); x++) {
             for (int y = 0; y <= 1; y++) {
-                if (id == images[x][y].getId()) {
+                if (id == images.get(x).get(y).getId()) {
                     return new int[]{x, y};
                 }
             }
         }
         return new int[]{-1, -1};
     }
-    public void createContentGroup() {
 
-        contentGroups[0]= new LinearLayout(this);
-        contentGroups[0].setOrientation(LinearLayout.HORIZONTAL);
-        contentGroups[0].setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 400));
-        for (int i = 0; i < 2; i++) {
+    public void createContentGroup() {
+        int x = images.size();
+
+        LinearLayout contentGroups = new LinearLayout(this);
+        contentGroups.setOrientation(LinearLayout.HORIZONTAL);
+        contentGroups.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 400));
+        ArrayList<ImageView> TempI = new ArrayList<>(2);
+        ArrayList<TextView> TempT = new ArrayList<>(2);
+        for (int y = 0; y < 2; y++) {
             ImageView ivImage = new ImageView(this);
             ivImage.setLayoutParams(new LinearLayout.LayoutParams(300, 300));
             ivImage.setImageResource(R.drawable.plus);
             ivImage.setOnClickListener(this);
-            images[0][i] = ivImage;
+            ivImage.setId(x * 100 + y * 10 + 1);
+            TempI.add(ivImage);
             TextView tvText = new TextView(this);
             //tvText.setText("TEXT");
             tvText.setLayoutParams(new LinearLayout.LayoutParams(300, ViewGroup.LayoutParams.MATCH_PARENT));
-            texts[0][i] = tvText;
-            imageTextGroups[0][i] = new LinearLayout(this);
-            imageTextGroups[0][i].setOrientation(LinearLayout.VERTICAL);
-            imageTextGroups[0][i].setLayoutParams(new ViewGroup.LayoutParams(Resources.getSystem().getDisplayMetrics().widthPixels/2, 400));
-            imageTextGroups[0][i].addView(images[0][i]);
-            imageTextGroups[0][i].addView(texts[0][i]);
-            contentGroups[0].addView(imageTextGroups[0][i]);
+            tvText.setId(x * 100 + y * 10 + 0);
+            TempT.add(tvText);
         }
-        llContentGroupHolder.addView(contentGroups[0]);
+        images.add(TempI);
+        texts.add(TempT);
+        for (int y = 0; y < 2; y++) {
+            LinearLayout imageTextGroups = new LinearLayout(this);
+            imageTextGroups.setOrientation(LinearLayout.VERTICAL);
+            imageTextGroups.setLayoutParams(new ViewGroup.LayoutParams(Resources.getSystem().getDisplayMetrics().widthPixels / 2, 400));
+            imageTextGroups.addView(images.get(x).get(y));
+            imageTextGroups.addView(texts.get(x).get(y));
+            contentGroups.addView(imageTextGroups);
+        }
+        llContentGroupHolder.addView(contentGroups);
     }
 
     @Override
@@ -141,20 +154,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             // Ein Bitmap zur Darstellung erhalten wir so:
             Bitmap bmp = BitmapFactory.decodeFile(path);
-            images[xView][yView].setImageBitmap(bmp);
+            images.get(xView).get(yView).setImageBitmap(bmp);
 
 
             String code = extras.getString(Intents.Scan.RESULT);
-            texts[xView][yView].setText(code);
-            Toast.makeText(getApplicationContext(), code, Toast.LENGTH_LONG).show();
+            texts.get(xView).get(yView).setText(code);
+            //Toast.makeText(getApplicationContext(), code, Toast.LENGTH_LONG).show();
+
+            addImageSpace();
         }
     }
 
     @Override
     public void onClick(View v) {
         int[] searching = convertIdToXY(v.getId());
-        if (searching[0] >= 0)
-        {
+        if (searching[0] >= 0) {
             xView = searching[0];
             yView = searching[1];
         }
@@ -165,5 +179,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onMenuItemClick(MenuItem item) {
         log();
         return true;
+    }
+
+    public void addImageSpace() {
+        int empty = 0;
+        for (int i = 0; i < texts.size(); i++) {
+            int lenth1 = texts.get(i).get(0).getText().length();
+            if (lenth1 <= 0) {
+                empty++;
+            }
+        }
+        if (empty == 0) {
+            createContentGroup();
+        }
     }
 }
