@@ -83,6 +83,15 @@ public class MainActivity extends AppCompatActivity {
         integrator.initiateScan();
     }
 
+    public int [] convertIdToXY (int id){
+        for (int x = 0; x < texts.length; x++) {
+            for (int y = 0; y <= 1; y++) {
+                if (id == images[x][y].getId()){
+                    return new int []{x,y};
+                }
+            }
+        }
+    }
     public void createContentGroup() {
         contentGroups[0]= new LinearLayout(this);
         contentGroups[0].setOrientation(LinearLayout.HORIZONTAL);
