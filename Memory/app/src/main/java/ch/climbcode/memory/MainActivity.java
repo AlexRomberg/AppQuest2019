@@ -87,14 +87,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         integrator.initiateScan();
     }
 
-    public int [] convertIdToXY (int id){
+    public int [] convertIdToXY (int id) {
         for (int x = 0; x < texts.length; x++) {
             for (int y = 0; y <= 1; y++) {
-                if (id == images[x][y].getId()){
-                    return new int []{x,y};
+                if (id == images[x][y].getId()) {
+                    return new int[]{x, y};
                 }
             }
         }
+        return   return new int[]{-1, -1};
     }
     public void createContentGroup() {
 
