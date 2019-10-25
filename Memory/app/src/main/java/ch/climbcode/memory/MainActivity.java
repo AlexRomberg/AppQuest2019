@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             TextView tvText = new TextView(this);
             tvText.setLayoutParams(new LinearLayout.LayoutParams(300, ViewGroup.LayoutParams.MATCH_PARENT));
             // ID = xy0
-            tvText.setId(x * 100 + y * 10 + 0);
+            tvText.setId(x * 100 + y * 10);
             TempTV.add(tvText);
         }
 
@@ -160,7 +160,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Bitmap bmp = BitmapFactory.decodeFile(path);
             images.get(xView).get(yView).setImageBitmap(bmp);
             images.get(xView).get(yView).setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300));
-
 
             String code = extras.getString(Intents.Scan.RESULT);
             texts.get(xView).get(yView).setText(code);
