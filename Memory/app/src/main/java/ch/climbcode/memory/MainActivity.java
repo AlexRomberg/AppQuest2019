@@ -171,9 +171,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (searching[0] >= 0) {
             xView = searching[0];
             yView = searching[1];
+
+            //if ImageView is not empty appears a Dialog
+            if (texts.get(xView).get(yView).getText().length() > 0) {
+                showMessagebox("Überschreiben", "Soll das gewählt Bild überschrieben werde?");
+            } else {
+                takeQrCodePicture();
+            }
         }
-        takeQrCodePicture();
     }
+
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
@@ -192,5 +199,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (empty == 0) {
             createContentGroup();
         }
+    }
+
+    public void showMessagebox(String title, String question) {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+
+        dialog.setTitle(title);
+        dialog.setMessage(question);
+
+        //If yes
+        dialog.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                takeQrCodePicture();
+            }
+        });
+
+        //If no
+        dialog.setNegativeButton("Nein", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog adAlert = dialog.create();
+        adAlert.show();
     }
 }
