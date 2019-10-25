@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             //if ImageView is not empty appears a Dialog
             if (texts.get(xView).get(yView).getText().length() > 0) {
-                showMessagebox("Überschreiben", "Soll das gewählt Bild überschrieben werde?");
+                showMessagebox("Überschreiben", "Soll das gewählt Bild überschrieben werden?");
             } else {
                 takeQrCodePicture();
             }
