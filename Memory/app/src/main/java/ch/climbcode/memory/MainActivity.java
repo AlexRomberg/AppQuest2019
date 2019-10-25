@@ -68,24 +68,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return textLog;
     }
 
-    //log message sent
     private void log() {
-        Intent intent = new Intent("ch.appquest.intent.LOG");
+        if (images.size() > 1 && writeText().length() > 0) {
+            Intent intent = new Intent("ch.appquest.intent.LOG");
 
-        if (getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).isEmpty()) {
-            Toast.makeText(this, "Logbook App not Installed", Toast.LENGTH_LONG).show();
-            return;
+            if (getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).isEmpty()) {
+                Toast.makeText(this, "Logbook App not Installed", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            String logmessage = "{\n  \"task\": \"Memory\",\n  \"solution\": [" + writeText() + "]\n}";
+            intent.putExtra("ch.appquest.logmessage", logmessage);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Log-Nachricht ist leer", Toast.LENGTH_LONG).show();
         }
-
-        String logmessage = "{\n  \"task\": \"Memory\",\n  \"solution\": [" + writeText() + "]\n}";
-        intent.putExtra("ch.appquest.logmessage", logmessage);
-        startActivity(intent);
-
     }
 
     public void takeQrCodePicture() {
         IntentIntegrator integrator = new IntentIntegrator(this);
-        //integrator.setCaptureActivity(MyCaptureActivity.class);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
         integrator.setOrientationLocked(false);
         integrator.addExtra(Intents.Scan.BARCODE_IMAGE_ENABLED, true);
