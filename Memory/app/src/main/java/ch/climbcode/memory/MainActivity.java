@@ -106,31 +106,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void createContentGroup() {
         int x = images.size();
-
         LinearLayout contentGroups = new LinearLayout(this);
         contentGroups.setOrientation(LinearLayout.HORIZONTAL);
         contentGroups.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 400));
-        ArrayList<ImageView> TempI = new ArrayList<>(2);
-        ArrayList<TextView> TempT = new ArrayList<>(2);
+
+        ArrayList<ImageView> TempIV = new ArrayList<>(2);
+        ArrayList<TextView> TempTV = new ArrayList<>(2);
         for (int y = 0; y < 2; y++) {
             ImageView ivImage = new ImageView(this);
             ivImage.setLayoutParams(new LinearLayout.LayoutParams(300, 300));
             ivImage.setImageResource(R.drawable.plus);
             ivImage.setOnClickListener(this);
+            // ID = xy1
             ivImage.setId(x * 100 + y * 10 + 1);
-            TempI.add(ivImage);
+            TempIV.add(ivImage);
             TextView tvText = new TextView(this);
-            //tvText.setText("TEXT");
             tvText.setLayoutParams(new LinearLayout.LayoutParams(300, ViewGroup.LayoutParams.MATCH_PARENT));
+            // ID = xy0
             tvText.setId(x * 100 + y * 10 + 0);
-            TempT.add(tvText);
+            TempTV.add(tvText);
         }
-        images.add(TempI);
-        texts.add(TempT);
+
+        images.add(TempIV);
+        texts.add(TempTV);
+
         for (int y = 0; y < 2; y++) {
             LinearLayout imageTextGroups = new LinearLayout(this);
             imageTextGroups.setOrientation(LinearLayout.VERTICAL);
             imageTextGroups.setLayoutParams(new ViewGroup.LayoutParams(Resources.getSystem().getDisplayMetrics().widthPixels / 2, 400));
+            imageTextGroups.setGravity(Gravity.CENTER);
             imageTextGroups.addView(images.get(x).get(y));
             imageTextGroups.addView(texts.get(x).get(y));
             contentGroups.addView(imageTextGroups);
@@ -147,8 +151,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == IntentIntegrator.REQUEST_CODE
-                && resultCode == RESULT_OK) {
+        if (requestCode == IntentIntegrator.REQUEST_CODE && resultCode == RESULT_OK) {
 
             Bundle extras = data.getExtras();
             String path = extras.getString(Intents.Scan.RESULT_BARCODE_IMAGE_PATH);
@@ -161,7 +164,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             String code = extras.getString(Intents.Scan.RESULT);
             texts.get(xView).get(yView).setText(code);
-            //Toast.makeText(getApplicationContext(), code, Toast.LENGTH_LONG).show();
 
             addImageSpace();
         }
