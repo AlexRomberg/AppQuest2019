@@ -156,6 +156,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             // Ein Bitmap zur Darstellung erhalten wir so:
             Bitmap bmp = BitmapFactory.decodeFile(path);
             images.get(xView).get(yView).setImageBitmap(bmp);
+            images.get(xView).get(yView).setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300));
 
 
             String code = extras.getString(Intents.Scan.RESULT);
