@@ -173,7 +173,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Bitmap cropImage(Bitmap input) {
         //endheigth get calculated, to match into the Box
         int width = input.getWidth(), endheigth = (int) Math.round(500.0 / (Resources.getSystem().getDisplayMetrics().widthPixels / 2.0) * input.getWidth()), cutdistanceTop = (input.getHeight() - endheigth) / 2;
-        Toast.makeText(this, "W: " + width + "\n H:" + endheigth, Toast.LENGTH_LONG).show();
         Bitmap output = Bitmap.createBitmap(input, 0, cutdistanceTop, width, endheigth);
         return output;
     }
