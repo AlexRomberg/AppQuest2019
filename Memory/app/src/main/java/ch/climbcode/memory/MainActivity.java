@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void takeQrCodePicture() {
         IntentIntegrator integrator = new IntentIntegrator(this);
+        integrator.setCaptureActivity(MyCaptureActivity.class);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
         integrator.setOrientationLocked(false);
         integrator.addExtra(Intents.Scan.BARCODE_IMAGE_ENABLED, true);
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int x = images.size();
         LinearLayout contentGroups = new LinearLayout(this);
         contentGroups.setOrientation(LinearLayout.HORIZONTAL);
-        contentGroups.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 400));
+        contentGroups.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 500));
 
         ArrayList<ImageView> TempIV = new ArrayList<>(2);
         ArrayList<TextView> TempTV = new ArrayList<>(2);
@@ -133,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (int y = 0; y < 2; y++) {
             LinearLayout imageTextGroups = new LinearLayout(this);
             imageTextGroups.setOrientation(LinearLayout.VERTICAL);
-            imageTextGroups.setLayoutParams(new ViewGroup.LayoutParams(Resources.getSystem().getDisplayMetrics().widthPixels / 2, 400));
+            imageTextGroups.setLayoutParams(new ViewGroup.LayoutParams(Resources.getSystem().getDisplayMetrics().widthPixels / 2, 500));
             imageTextGroups.setGravity(Gravity.CENTER);
             imageTextGroups.addView(images.get(x).get(y));
             imageTextGroups.addView(texts.get(x).get(y));
@@ -158,14 +159,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             // Ein Bitmap zur Darstellung erhalten wir so:
             Bitmap bmp = BitmapFactory.decodeFile(path);
+            bmp = cropImage(bmp);
             images.get(xView).get(yView).setImageBitmap(bmp);
-            images.get(xView).get(yView).setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300));
+            images.get(xView).get(yView).setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 400));
 
             String code = extras.getString(Intents.Scan.RESULT);
             texts.get(xView).get(yView).setText(code);
 
             addImageSpace();
         }
+    }
+
+    private Bitmap cropImage(Bitmap input) {
+        //endheigth get calculated, to match into the Box
+        int width = input.getWidth(), endheigth = (int) Math.round(500.0 / (Resources.getSystem().getDisplayMetrics().widthPixels / 2.0) * input.getWidth()), cutdistanceTop = (input.getHeight() - endheigth) / 2;
+        Toast.makeText(this, "W: " + width + "\n H:" + endheigth, Toast.LENGTH_LONG).show();
+        Bitmap output = Bitmap.createBitmap(input, 0, cutdistanceTop, width, endheigth);
+        return output;
     }
 
     @Override
