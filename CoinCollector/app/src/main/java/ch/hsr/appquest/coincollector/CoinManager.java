@@ -36,6 +36,10 @@ public class CoinManager {
 
     public List<CoinRegion> getCoinRegions() { return coinRegions; }
 
+    public void addCoin (int major, int minor) {
+        addCoin(major, minor);
+    }
+
     public List<Coin> getCoins() { return getFlattenedCoins(coinRegions); }
 
     private void load() {

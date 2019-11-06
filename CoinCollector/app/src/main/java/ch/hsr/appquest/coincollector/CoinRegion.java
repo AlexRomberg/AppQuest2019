@@ -12,9 +12,13 @@ public class CoinRegion {
         this.coinList = coinList;
     }
 
-    public Identifier getIdentifier() { return identifier; }
+    public Identifier getIdentifier() {
+        return identifier;
+    }
 
-    public List<Coin> getCoinList() { return coinList; }
+    public List<Coin> getCoinList() {
+        return coinList;
+    }
 
     public enum Identifier {
         lakeside,
@@ -36,17 +40,27 @@ public class CoinRegion {
         }
          */
         switch (identifier) {
-            case lakeside: return "Seeufer";
-            case island: return "Insel";
-            case cafeteria: return "Kantine";
-            case bicyclestand: return "Veloständer";
-            case researchbuilding: return "Forschungsgebäude";
-            default: return "";
+            case lakeside:
+                return "Seeufer";
+            case island:
+                return "Insel";
+            case cafeteria:
+                return "Kantine";
+            case bicyclestand:
+                return "Veloständer";
+            case researchbuilding:
+                return "Forschungsgebäude";
+            default:
+                return "";
         }
     }
 
     public String getRegionName() {
         return getImageName();
+    }
+
+    public void addCoin(int major, int minor) {
+        coinList.get(major - 1).setMinor(minor);
     }
 
 }

@@ -24,6 +24,8 @@ import org.altbeacon.beacon.Region;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
 
 public class MainActivity extends AppCompatActivity implements BeaconConsumer {
@@ -186,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     public void onBeaconServiceConnect() {
         beaconManager.addRangeNotifier((beacons, region) -> {
             // TODO: Für jeden Beacon in der beacons Collection, rufe die Methode collectBeacon() auf.
-            //collectBeacon(beacons);
+            collectBeacon((Beacon) beacons);
         });
         // TODO: Starte hier das Suchen nach Beacons.
     }
@@ -209,7 +211,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
 
     private void updateCoin(int major, int minor) {
         // TODO: Setze die Minor Nummer der gefundenen Münze und speichere das Ergebnis. Danach muss man auch noch die SectionedRecyclerView neu laden.
-
+        coinManager.addCoin(major,minor);
         // TODO (optional): Zeige dem User eine lokale Notification. Dazu kannst Du die Klasse NotificationUtil verwenden.
     }
 
