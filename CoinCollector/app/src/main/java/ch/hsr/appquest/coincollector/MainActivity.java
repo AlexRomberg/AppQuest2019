@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     private void setupBeaconManager() {
         // TODO: Erstelle und konfiguriere den BeaconManager.
 
+
         if (this.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             if (this.checkSelfPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 beaconManager.bind(this);
@@ -185,6 +186,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     public void onBeaconServiceConnect() {
         beaconManager.addRangeNotifier((beacons, region) -> {
             // TODO: Für jeden Beacon in der beacons Collection, rufe die Methode collectBeacon() auf.
+            //collectBeacon(beacons);
         });
         // TODO: Starte hier das Suchen nach Beacons.
     }
@@ -207,6 +209,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
 
     private void updateCoin(int major, int minor) {
         // TODO: Setze die Minor Nummer der gefundenen Münze und speichere das Ergebnis. Danach muss man auch noch die SectionedRecyclerView neu laden.
+
         // TODO (optional): Zeige dem User eine lokale Notification. Dazu kannst Du die Klasse NotificationUtil verwenden.
     }
 
