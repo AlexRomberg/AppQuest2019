@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         setupNotificationUtil();
 
     }
-    private Boolean entyMessageRaised = false;
+    private Boolean entryMessageRaised = false;
     private Boolean exitMessageRaised = false;
     private Boolean rangingMessageRaised = false;
 
@@ -201,12 +201,13 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     }
 
     public void didEnterRegion (Region region){
-        if(!entyMessageRaised){
-            entyMessageRaised = true;
+        if(!entryMessageRaised){
+            entryMessageRaised = true;
             //here you can get the Id2, UniqueID, Id1, Id3 with region.xxx()
+
         }
     }
-    public void sdidExitRegion (Region region){
+    public void didExitRegion (Region region){
         if(!exitMessageRaised){
             exitMessageRaised = true;
             //here you can get the Id2, UniqueID, Id1, Id3 with region.xxx()
@@ -221,6 +222,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
            rangingMessageRaised = true;
        }
     }
+
     private void collectBeacon(){
         try{
             beaconRegion = new Region("My Beacons", Identifier.parse("52495334-5696-4DAE-BEC7-98D44A30FFDA"),Identifier.parse("4"),Identifier.parse("200"));
