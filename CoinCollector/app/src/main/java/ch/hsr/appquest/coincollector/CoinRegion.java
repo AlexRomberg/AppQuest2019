@@ -26,18 +26,18 @@ public class CoinRegion {
 
     public String getImageName() {
         switch (identifier) {
-            case lakeside: return "lakeside_coin";
-            case island: return "island_coin";
-            case cafeteria: return "cafeteria_coin";
-            case bicyclestand: return "bicyclestand_coin";
-            case researchbuilding: return "researchbuilding_coin";
+            case lakeside: return "Seeufer";
+            case island: return "Insel";
+            case cafeteria: return "Mensa";
+            case bicyclestand: return "Veloständer";
+            case researchbuilding: return "Forschungsgebäude";
             default: return "";
         }
     }
 
     public String getRegionName() {
         // TODO: Gib anhand des Identifiers den richtigen Regions-Namen zurück. Dieser wird dann im passenden Section-Header der SectionedRecyclerView angezeigt.
-        return "TODO: Regions-Name einfügen";
+        return getImageName();
     }
 
 }
