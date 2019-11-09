@@ -225,7 +225,8 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
 
     private void collectBeacon(){
         try{
-            beaconRegion = new Region("My Beacons", Identifier.parse("52495334-5696-4DAE-BEC7-98D44A30FFDA"),Identifier.parse("4"),Identifier.parse("200"));
+            //beaconRegion = new Region("My Beacons", Identifier.parse("52495334-5696-4DAE-BEC7-98D44A30FFDA"),Identifier.parse("4"),Identifier.parse("200"));
+            beaconRegion = new Region(appUuid, beaconLayout);
             beaconManager.startMonitoringBeaconsInRegion(beaconRegion);
             beaconManager.startRangingBeaconsInRegion(beaconRegion);
 
