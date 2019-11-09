@@ -6,24 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/llContentGroupHolder"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="51dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="174dp"
-            android:layout_height="54dp"
-            android:layout_gravity="center"
-            android:fontFamily="monospace"
-            android:text="@string/memmory"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="36sp" />
+        <LinearLayout
+            android:id="@+id/llContentGroupHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="174dp"
+                android:layout_height="54dp"
+                android:layout_gravity="center"
+                android:fontFamily="monospace"
+                android:text="@string/memmory"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="36sp" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
