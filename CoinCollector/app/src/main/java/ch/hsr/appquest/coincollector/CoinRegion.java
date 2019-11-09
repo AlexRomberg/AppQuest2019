@@ -12,13 +12,9 @@ public class CoinRegion {
         this.coinList = coinList;
     }
 
-    public Identifier getIdentifier() {
-        return identifier;
-    }
+    public Identifier getIdentifier() { return identifier; }
 
-    public List<Coin> getCoinList() {
-        return coinList;
-    }
+    public List<Coin> getCoinList() { return coinList; }
 
     public enum Identifier {
         lakeside,
@@ -29,7 +25,6 @@ public class CoinRegion {
     }
 
     public String getImageName() {
-        /*
         switch (identifier) {
             case lakeside: return "lakeside_coin";
             case island: return "island_coin";
@@ -38,29 +33,11 @@ public class CoinRegion {
             case researchbuilding: return "researchbuilding_coin";
             default: return "";
         }
-         */
-        switch (identifier) {
-            case lakeside:
-                return "Seeufer";
-            case island:
-                return "Insel";
-            case cafeteria:
-                return "Kantine";
-            case bicyclestand:
-                return "Veloständer";
-            case researchbuilding:
-                return "Forschungsgebäude";
-            default:
-                return "";
-        }
     }
 
     public String getRegionName() {
-        return getImageName();
-    }
-
-    public void addCoin(int major, int minor) {
-        coinList.get(major - 1).setMinor(minor);
+        // TODO: Gib anhand des Identifiers den richtigen Regions-Namen zurück. Dieser wird dann im passenden Section-Header der SectionedRecyclerView angezeigt.
+        return "TODO: Regions-Name einfügen";
     }
 
 }

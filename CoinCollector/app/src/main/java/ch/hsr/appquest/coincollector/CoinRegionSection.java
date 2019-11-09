@@ -37,7 +37,6 @@ public class CoinRegionSection extends Section {
     @Override
     public void onBindItemViewHolder(RecyclerView.ViewHolder holder, int position) {
         CoinItemViewHolder coinItemViewHolder = (CoinItemViewHolder) holder;
-        coinItemViewHolder.getCoinImageView();
         // TODO: Befülle den CoinItemViewHolder mit den Informationen der Münze an der angegebenen Position.
     }
 

@@ -1,35 +1,45 @@
 package ch.climbcode.memory;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
 
-import java.util.ArrayList;
+import java.io.LineNumberReader;
+
+import static android.content.Context.ACTIVITY_SERVICE;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, MenuItem.OnMenuItemClickListener {
 
     LinearLayout llContentGroupHolder;
-    ArrayList<ArrayList<ImageView>> images = new ArrayList<>();
-    ArrayList<ArrayList<TextView>> texts = new ArrayList<>();
+    LinearLayout contentGroups[] = new LinearLayout[1];
+    LinearLayout imageTextGroups[][] = new LinearLayout[1][2];
+    ImageView images[][] = new ImageView[1][2];
+    TextView texts[][] = new TextView[1][2];
     int xView = 0, yView = 0;
 
     @Override
@@ -42,189 +52,118 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //text of pictures getting prepared
-    public String writeText() {
+    public String writeText(){
         String textLog = "";
-        for (int i = 0; i < texts.size(); i++) {
-            int lenth1 = texts.get(i).get(0).getText().length(), lenth2 = texts.get(i).get(1).getText().length();
-            if (lenth1 > 0 && lenth2 > 0) {
-                String textMemory = (String) texts.get(i).get(0).getText();
-                String textMemory2 = (String) texts.get(i).get(1).getText();
-                if (i != 0) {
-                    textLog += ", ";
+        for (int i = 0; i < texts.length; i++) {
+                if (texts[i][0].getText().length() > 0 || texts[i][1].getText().length() > 0) {
+                   String textMemory = (String)texts[i][0].getText();
+                   String textMemory2 = (String)texts[i][1].getText();
+                   if(i != 0) {
+                       textLog += ", ";
+                   }
+                    textLog += "[" + textMemory + "," + textMemory2 + "]";
                 }
-                textLog += "[" + textMemory + "," + textMemory2 + "]";
-            }
-        }
-        return textLog;
+        } return textLog;
     }
 
+    //log message sent
     private void log() {
-        if (images.size() > 1 && writeText().length() > 0) {
-            Intent intent = new Intent("ch.appquest.intent.LOG");
+        Intent intent = new Intent("ch.appquest.intent.LOG");
 
-            if (getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).isEmpty()) {
-                Toast.makeText(this, "Logbook App not Installed", Toast.LENGTH_LONG).show();
-                return;
-            }
-
-            String logmessage = "{\n  \"task\": \"Memory\",\n  \"solution\": [" + writeText() + "]\n}";
-            intent.putExtra("ch.appquest.logmessage", logmessage);
-            startActivity(intent);
-        } else {
-            Toast.makeText(this, "Log-Nachricht ist leer", Toast.LENGTH_LONG).show();
+        if (getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).isEmpty()) {
+            Toast.makeText(this, "Logbook App not Installed", Toast.LENGTH_LONG).show();
+            return;
         }
-    }
 
+        String logmessage = "{\n  \"task\": \"Memory\",\n  \"solution\": ["+writeText()+"]\n}";
+        intent.putExtra("ch.appquest.logmessage", logmessage);
+        startActivity(intent);
+
+    }
     public void takeQrCodePicture() {
         IntentIntegrator integrator = new IntentIntegrator(this);
-        integrator.setCaptureActivity(MyCaptureActivity.class);
+        //integrator.setCaptureActivity(MyCaptureActivity.class);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
         integrator.setOrientationLocked(false);
         integrator.addExtra(Intents.Scan.BARCODE_IMAGE_ENABLED, true);
         integrator.initiateScan();
     }
 
-    public int[] convertIdToXY(int id) {
-        for (int x = 0; x < texts.size(); x++) {
+    public int [] convertIdToXY (int id) {
+        for (int x = 0; x < texts.length; x++) {
             for (int y = 0; y <= 1; y++) {
-                if (id == images.get(x).get(y).getId()) {
+                if (id == images[x][y].getId()) {
                     return new int[]{x, y};
                 }
             }
         }
         return new int[]{-1, -1};
     }
-
     public void createContentGroup() {
-        int x = images.size();
-        LinearLayout contentGroups = new LinearLayout(this);
-        contentGroups.setOrientation(LinearLayout.HORIZONTAL);
-        contentGroups.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 500));
 
-        ArrayList<ImageView> TempIV = new ArrayList<>(2);
-        ArrayList<TextView> TempTV = new ArrayList<>(2);
-        for (int y = 0; y < 2; y++) {
+        contentGroups[0]= new LinearLayout(this);
+        contentGroups[0].setOrientation(LinearLayout.HORIZONTAL);
+        contentGroups[0].setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 400));
+        for (int i = 0; i < 2; i++) {
             ImageView ivImage = new ImageView(this);
             ivImage.setLayoutParams(new LinearLayout.LayoutParams(300, 300));
             ivImage.setImageResource(R.drawable.plus);
             ivImage.setOnClickListener(this);
-            // ID = xy1
-            ivImage.setId(x * 100 + y * 10 + 1);
-            TempIV.add(ivImage);
+            images[0][i] = ivImage;
             TextView tvText = new TextView(this);
+            //tvText.setText("TEXT");
             tvText.setLayoutParams(new LinearLayout.LayoutParams(300, ViewGroup.LayoutParams.MATCH_PARENT));
-            // ID = xy0
-            tvText.setId(x * 100 + y * 10);
-            TempTV.add(tvText);
+            texts[0][i] = tvText;
+            imageTextGroups[0][i] = new LinearLayout(this);
+            imageTextGroups[0][i].setOrientation(LinearLayout.VERTICAL);
+            imageTextGroups[0][i].setLayoutParams(new ViewGroup.LayoutParams(Resources.getSystem().getDisplayMetrics().widthPixels/2, 400));
+            imageTextGroups[0][i].addView(images[0][i]);
+            imageTextGroups[0][i].addView(texts[0][i]);
+            contentGroups[0].addView(imageTextGroups[0][i]);
         }
-
-        images.add(TempIV);
-        texts.add(TempTV);
-
-        for (int y = 0; y < 2; y++) {
-            LinearLayout imageTextGroups = new LinearLayout(this);
-            imageTextGroups.setOrientation(LinearLayout.VERTICAL);
-            imageTextGroups.setLayoutParams(new ViewGroup.LayoutParams(Resources.getSystem().getDisplayMetrics().widthPixels / 2, 500));
-            imageTextGroups.setGravity(Gravity.CENTER);
-            imageTextGroups.addView(images.get(x).get(y));
-            imageTextGroups.addView(texts.get(x).get(y));
-            contentGroups.addView(imageTextGroups);
-        }
-        llContentGroupHolder.addView(contentGroups);
+        llContentGroupHolder.addView(contentGroups[0]);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuItem menuItem = menu.add("Log");
+        MenuItem menuItem = menu.add("Neues Bild aufnehmen");
         menuItem.setOnMenuItemClickListener(this);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == IntentIntegrator.REQUEST_CODE && resultCode == RESULT_OK) {
+        if (requestCode == IntentIntegrator.REQUEST_CODE
+                && resultCode == RESULT_OK) {
 
             Bundle extras = data.getExtras();
             String path = extras.getString(Intents.Scan.RESULT_BARCODE_IMAGE_PATH);
 
             // Ein Bitmap zur Darstellung erhalten wir so:
             Bitmap bmp = BitmapFactory.decodeFile(path);
-            bmp = cropImage(bmp);
-            images.get(xView).get(yView).setImageBitmap(bmp);
-            images.get(xView).get(yView).setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 400));
+            images[xView][yView].setImageBitmap(bmp);
+
 
             String code = extras.getString(Intents.Scan.RESULT);
-            texts.get(xView).get(yView).setText(code);
-
-            addImageSpace();
+            texts[xView][yView].setText(code);
+            Toast.makeText(getApplicationContext(), code, Toast.LENGTH_LONG).show();
         }
-    }
-
-    private Bitmap cropImage(Bitmap input) {
-        //endheigth get calculated, to match into the Box
-        int width = input.getWidth(), endheigth = (int) Math.round(500.0 / (Resources.getSystem().getDisplayMetrics().widthPixels / 2.0) * input.getWidth()), cutdistanceTop = (input.getHeight() - endheigth) / 2;
-        Bitmap output = Bitmap.createBitmap(input, 0, cutdistanceTop, width, endheigth);
-        return output;
     }
 
     @Override
     public void onClick(View v) {
         int[] searching = convertIdToXY(v.getId());
-        if (searching[0] >= 0) {
+        if (searching[0] >= 0)
+        {
             xView = searching[0];
             yView = searching[1];
-
-            //if ImageView is not empty appears a Dialog
-            if (texts.get(xView).get(yView).getText().length() > 0) {
-                showMessagebox("Überschreiben", "Soll das gewählt Bild überschrieben werden?");
-            } else {
-                takeQrCodePicture();
-            }
         }
+        takeQrCodePicture();
     }
-
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         log();
         return true;
-    }
-
-    public void addImageSpace() {
-        int empty = 0;
-        for (int i = 0; i < texts.size(); i++) {
-            int lenth1 = texts.get(i).get(0).getText().length();
-            if (lenth1 <= 0) {
-                empty++;
-            }
-        }
-        if (empty == 0) {
-            createContentGroup();
-        }
-    }
-
-    public void showMessagebox(String title, String question) {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-
-        dialog.setTitle(title);
-        dialog.setMessage(question);
-
-        //If yes
-        dialog.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                takeQrCodePicture();
-            }
-        });
-
-        //If no
-        dialog.setNegativeButton("Nein", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-
-        AlertDialog adAlert = dialog.create();
-        adAlert.show();
     }
 }
