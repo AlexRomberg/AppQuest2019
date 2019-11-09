@@ -246,10 +246,10 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     public void onBeaconServiceConnect() {
         beaconManager.addRangeNotifier((beacons, region) -> {
             // TODO: Für jeden Beacon in der beacons Collection, rufe die Methode collectBeacon() auf.
-            //collectBeacon();
+            collectBeacon();
         });
         // TODO: Starte hier das Suchen nach Beacons.
-        //collectBeacon();
+        collectBeacon();
     }
 
     private void onLogAction() {
