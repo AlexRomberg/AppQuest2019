@@ -1,0 +1,140 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="ch.hsr.appquest.coincollector"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+8-->/home/misto/CoinCollector_Android/CoinCollector/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->/home/misto/CoinCollector_Android/CoinCollector/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+11-->/home/misto/CoinCollector_Android/CoinCollector/app/src/main/AndroidManifest.xml:6:5-81
+11-->/home/misto/CoinCollector_Android/CoinCollector/app/src/main/AndroidManifest.xml:6:22-78
+12    <uses-permission
+12-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:11:5-13:36
+13        android:name="android.permission.BLUETOOTH"
+13-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:12:9-52
+14        android:required="false" />
+14-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:13:9-33
+15    <uses-permission
+15-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:14:5-16:36
+16        android:name="android.permission.BLUETOOTH_ADMIN"
+16-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:15:9-58
+17        android:required="false" />
+17-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:16:9-33
+18    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+18-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:17:5-81
+18-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:17:22-78
+19
+20    <application
+20-->/home/misto/CoinCollector_Android/CoinCollector/app/src/main/AndroidManifest.xml:8:5-25:19
+21        android:allowBackup="true"
+21-->/home/misto/CoinCollector_Android/CoinCollector/app/src/main/AndroidManifest.xml:9:9-35
+22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+22-->[androidx.core:core:1.1.0] /home/misto/.gradle/caches/transforms-2/files-2.1/c527b78844be871c44103f6f45a963fb/core-1.1.0/AndroidManifest.xml:24:18-86
+23        android:debuggable="true"
+24        android:fullBackupContent="false"
+24-->/home/misto/CoinCollector_Android/CoinCollector/app/src/main/AndroidManifest.xml:15:9-42
+25        android:icon="@mipmap/ic_launcher"
+25-->/home/misto/CoinCollector_Android/CoinCollector/app/src/main/AndroidManifest.xml:10:9-43
+26        android:label="@string/app_name"
+26-->/home/misto/CoinCollector_Android/CoinCollector/app/src/main/AndroidManifest.xml:12:9-41
+27        android:roundIcon="@mipmap/ic_launcher_round"
+27-->/home/misto/CoinCollector_Android/CoinCollector/app/src/main/AndroidManifest.xml:11:9-54
+28        android:supportsRtl="true"
+28-->/home/misto/CoinCollector_Android/CoinCollector/app/src/main/AndroidManifest.xml:13:9-35
+29        android:theme="@style/AppTheme" >
+29-->/home/misto/CoinCollector_Android/CoinCollector/app/src/main/AndroidManifest.xml:14:9-40
+30        <activity
+30-->/home/misto/CoinCollector_Android/CoinCollector/app/src/main/AndroidManifest.xml:17:9-24:20
+31            android:name="ch.hsr.appquest.coincollector.MainActivity"
+31-->/home/misto/CoinCollector_Android/CoinCollector/app/src/main/AndroidManifest.xml:18:13-41
+32            android:label="@string/app_name" >
+32-->/home/misto/CoinCollector_Android/CoinCollector/app/src/main/AndroidManifest.xml:19:13-45
+33            <intent-filter>
+33-->/home/misto/CoinCollector_Android/CoinCollector/app/src/main/AndroidManifest.xml:20:13-23:29
+34                <action android:name="android.intent.action.MAIN" />
+34-->/home/misto/CoinCollector_Android/CoinCollector/app/src/main/AndroidManifest.xml:21:17-69
+34-->/home/misto/CoinCollector_Android/CoinCollector/app/src/main/AndroidManifest.xml:21:25-66
+35
+36                <category android:name="android.intent.category.LAUNCHER" />
+36-->/home/misto/CoinCollector_Android/CoinCollector/app/src/main/AndroidManifest.xml:22:17-77
+36-->/home/misto/CoinCollector_Android/CoinCollector/app/src/main/AndroidManifest.xml:22:27-74
+37            </intent-filter>
+38        </activity>
+39
+40        <receiver android:name="org.altbeacon.beacon.startup.StartupBroadcastReceiver" >
+40-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:21:9-27:20
+40-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:21:19-87
+41            <intent-filter>
+41-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:22:13-26:29
+42                <action android:name="android.intent.action.BOOT_COMPLETED" />
+42-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:23:17-79
+42-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:23:25-76
+43                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+43-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:24:17-87
+43-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:24:25-84
+44                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+44-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:25:17-90
+44-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:25:25-87
+45            </intent-filter>
+46        </receiver>
+47
+48        <service
+48-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:29:9-34:38
+49            android:name="org.altbeacon.beacon.service.BeaconService"
+49-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:30:13-70
+50            android:enabled="true"
+50-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:31:13-35
+51            android:exported="false"
+51-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:32:13-37
+52            android:isolatedProcess="false"
+52-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:33:13-44
+53            android:label="beacon" />
+53-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:34:13-35
+54        <service
+54-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:35:9-38:40
+55            android:name="org.altbeacon.beacon.BeaconIntentProcessor"
+55-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:36:13-70
+56            android:enabled="true"
+56-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:37:13-35
+57            android:exported="false" />
+57-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:38:13-37
+58        <service
+58-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:39:9-48:19
+59            android:name="org.altbeacon.beacon.service.ScanJob"
+59-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:40:13-64
+60            android:permission="android.permission.BIND_JOB_SERVICE" >
+60-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:41:13-69
+61            <meta-data
+61-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:42:13-44:45
+62                android:name="immediateScanJobId"
+62-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:43:17-50
+63                android:value="208352939" />
+63-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:44:17-42
+64            <meta-data
+64-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:45:13-47:45
+65                android:name="periodicScanJobId"
+65-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:46:17-49
+66                android:value="208352940" />
+66-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:47:17-42
+67        </service>
+68        <service
+68-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:49:9-55:19
+69            android:name="org.altbeacon.bluetooth.BluetoothTestJob"
+69-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:50:13-68
+70            android:permission="android.permission.BIND_JOB_SERVICE" >
+70-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:51:13-69
+71            <meta-data
+71-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:52:13-54:46
+72                android:name="jobId"
+72-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:53:17-37
+73                android:value="1799803768" />
+73-->[org.altbeacon:android-beacon-library:2.16.3] /home/misto/.gradle/caches/transforms-2/files-2.1/80f826a554f28314de7088daf037b5b3/android-beacon-library-2.16.3/AndroidManifest.xml:54:17-43
+74        </service>
+75    </application>
+76
+77</manifest>
