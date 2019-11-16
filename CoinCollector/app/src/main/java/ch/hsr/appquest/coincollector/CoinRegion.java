@@ -39,4 +39,7 @@ public class CoinRegion {
        return getImageName();
     }
 
+    public void setMinor (int major, int minor) {
+        coinList.get(major).setMinor(minor);
+    }
 }

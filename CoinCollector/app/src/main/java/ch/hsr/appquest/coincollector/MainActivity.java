@@ -6,9 +6,11 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.util.AndroidException;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -23,6 +25,8 @@ import org.altbeacon.beacon.BeaconParser;
 import org.altbeacon.beacon.Region;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.UUID;
 
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
 
@@ -53,10 +57,21 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
 
     private void setupBeaconManager() {
         // TODO: Erstelle und konfiguriere den BeaconManager.
+        try {
+            beaconManager = BeaconManager.getInstanceForApplication(this);
+            beaconManager.getBeaconParsers().add(new BeaconParser().setBeaconLayout(beaconLayout));
+            beaconManager.setForegroundScanPeriod(5000);
+            beaconManager.updateScanPeriods();
+            beaconManager.bind(this);
+        } catch (RemoteException e) {
+
+            Toast.makeText(this, "Fehler bei scanperiod", Toast.LENGTH_LONG);
+        }
+
 
         if (this.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             if (this.checkSelfPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                beaconManager.bind(this);
+                //beaconManager.bind(this);
             } else {
                 if (this.shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
                     final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -93,7 +108,9 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         }
     }
 
-    private void setupCoinManager() { coinManager = new CoinManager(this); }
+    private void setupCoinManager() {
+        coinManager = new CoinManager(this);
+    }
 
     private void setupSectionedRecyclerView() {
         sectionAdapter = new SectionedRecyclerViewAdapter();
@@ -158,6 +175,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        beaconManager.unbind(this);
         // TODO: Der BeaconManager wird hier nicht mehr gebraucht.
     }
 
@@ -184,12 +202,40 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     @Override
     public void onBeaconServiceConnect() {
         beaconManager.addRangeNotifier((beacons, region) -> {
+            if (beacons.size() > 0) {
+                for (Beacon beacon : beacons) {
+                    collectBeacon(beacon);
+                }
+            }
+
             // TODO: Für jeden Beacon in der beacons Collection, rufe die Methode collectBeacon() auf.
         });
+        try {
+            beaconManager.startRangingBeaconsInRegion(new Region(appUuid, null, null, null));
+        } catch (RemoteException e) {
+            Toast.makeText(this, "Fehler bei Scan", Toast.LENGTH_LONG);
+        }
+
         // TODO: Starte hier das Suchen nach Beacons.
     }
 
     private void onLogAction() {
+        try {
+            JSONObject log = coinManager.logJson(coinManager.getCoinRegions());
+
+            Intent intent = new Intent("ch.appquest.intent.LOG");
+
+            if (getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).isEmpty()) {
+                Toast.makeText(this, "Logbook App not Installed", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            intent.putExtra("ch.appquest.logmessage", log.toString());
+            startActivity(intent);
+
+        } catch (JSONException e) {
+            Toast.makeText(this, "Keine Einträge gefunden", Toast.LENGTH_LONG);
+        }
         // TODO: Vorbereitung und Absenden des Logbuch-Eintrags gemäss der vorgegebenen Formatierung. Verwende dazu die logJson() Methode der Klasse CoinManager.
     }
 
@@ -206,6 +252,9 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     }
 
     private void updateCoin(int major, int minor) {
+
+        coinManager.save();
+        sectionAdapter.notifyDataSetChanged();
         // TODO: Setze die Minor Nummer der gefundenen Münze und speichere das Ergebnis. Danach muss man auch noch die SectionedRecyclerView neu laden.
         // TODO (optional): Zeige dem User eine lokale Notification. Dazu kannst Du die Klasse NotificationUtil verwenden.
     }
