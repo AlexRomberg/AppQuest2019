@@ -155,7 +155,7 @@ public class CoinManager {
                     .collect(Collectors.toList());
     }
 
-    private void setMinor (int major, int minor) {
+    public void setMinor (int major, int minor) {
         coinRegions.get(major).setMinor(major, minor);
     }
 

@@ -252,7 +252,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     }
 
     private void updateCoin(int major, int minor) {
-
+        coinManager.setMinor(major, minor);
         coinManager.save();
         sectionAdapter.notifyDataSetChanged();
         // TODO: Setze die Minor Nummer der gefundenen Münze und speichere das Ergebnis. Danach muss man auch noch die SectionedRecyclerView neu laden.
