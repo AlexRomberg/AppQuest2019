@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
             beaconManager.getBeaconParsers().add(new BeaconParser().setBeaconLayout(beaconLayout));
             beaconManager.setForegroundScanPeriod(5000);
             beaconManager.updateScanPeriods();
-            beaconManager.bind(this);
+            //beaconManager.bind(this);
         } catch (RemoteException e) {
 
             Toast.makeText(this, "Fehler bei scanperiod", Toast.LENGTH_LONG);
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
 
         if (this.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             if (this.checkSelfPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                //beaconManager.bind(this);
+                beaconManager.bind(this);
             } else {
                 if (this.shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
                     final AlertDialog.Builder builder = new AlertDialog.Builder(this);

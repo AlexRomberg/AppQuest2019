@@ -95,9 +95,9 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Al
 	tools:ignore
 		ADDED from D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:19:9-48
 	android:roundIcon
-		ADDED from D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:14:9-54
+		ADDED from D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:14:9-47
 	android:icon
-		ADDED from D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:13:9-43
+		ADDED from D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:13:9-36
 	android:allowBackup
 		ADDED from D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:12:9-35
 	android:theme
