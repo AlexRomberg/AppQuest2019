@@ -70,10 +70,10 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
 
 
         if (this.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            if (this.checkSelfPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            //if (this.checkSelfPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 beaconManager.bind(this);
-            } else {
-                if (this.shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
+            //} else {
+            /*    if (this.shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
                     final AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setTitle("This app needs background location access");
                     builder.setMessage("Please grant location access so this app can detect beacons in the background.");
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
                     builder.show();
                 }
 
-            }
+            }*/
         } else {
             if (this.shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION,

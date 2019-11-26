@@ -52,96 +52,95 @@
 29-->D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:14:9-47
 30        android:supportsRtl="true"
 30-->D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:16:9-35
-31        android:testOnly="true"
-32        android:theme="@style/AppTheme" >
-32-->D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:17:9-40
-33        <activity
-33-->D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:20:9-27:20
-34            android:name="ch.hsr.appquest.coincollector.MainActivity"
-34-->D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:21:13-41
-35            android:label="@string/app_name" >
-35-->D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:22:13-45
-36            <intent-filter>
-36-->D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:23:13-26:29
-37                <action android:name="android.intent.action.MAIN" />
-37-->D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:24:17-69
-37-->D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:24:25-66
-38
-39                <category android:name="android.intent.category.LAUNCHER" />
-39-->D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:25:17-77
-39-->D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:25:27-74
-40            </intent-filter>
-41        </activity>
-42
-43        <receiver android:name="org.altbeacon.beacon.startup.StartupBroadcastReceiver" >
-43-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:21:9-27:20
-43-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:21:19-87
-44            <intent-filter>
-44-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:22:13-26:29
-45                <action android:name="android.intent.action.BOOT_COMPLETED" />
-45-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:23:17-79
-45-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:23:25-76
-46                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
-46-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:24:17-87
-46-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:24:25-84
-47                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
-47-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:25:17-90
-47-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:25:25-87
-48            </intent-filter>
-49        </receiver>
-50
-51        <service
-51-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:29:9-34:38
-52            android:name="org.altbeacon.beacon.service.BeaconService"
-52-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:30:13-70
-53            android:enabled="true"
-53-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:31:13-35
-54            android:exported="false"
-54-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:32:13-37
-55            android:isolatedProcess="false"
-55-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:33:13-44
-56            android:label="beacon" />
-56-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:34:13-35
-57        <service
-57-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:35:9-38:40
-58            android:name="org.altbeacon.beacon.BeaconIntentProcessor"
-58-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:36:13-70
-59            android:enabled="true"
-59-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:37:13-35
-60            android:exported="false" />
-60-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:38:13-37
-61        <service
-61-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:39:9-48:19
-62            android:name="org.altbeacon.beacon.service.ScanJob"
-62-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:40:13-64
-63            android:permission="android.permission.BIND_JOB_SERVICE" >
-63-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:41:13-69
-64            <meta-data
-64-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:42:13-44:45
-65                android:name="immediateScanJobId"
-65-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:43:17-50
-66                android:value="208352939" />
-66-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:44:17-42
-67            <meta-data
-67-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:45:13-47:45
-68                android:name="periodicScanJobId"
-68-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:46:17-49
-69                android:value="208352940" />
-69-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:47:17-42
-70        </service>
-71        <service
-71-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:49:9-55:19
-72            android:name="org.altbeacon.bluetooth.BluetoothTestJob"
-72-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:50:13-68
-73            android:permission="android.permission.BIND_JOB_SERVICE" >
-73-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:51:13-69
-74            <meta-data
-74-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:52:13-54:46
-75                android:name="jobId"
-75-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:53:17-37
-76                android:value="1799803768" />
-76-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:54:17-43
-77        </service>
-78    </application>
-79
-80</manifest>
+31        android:theme="@style/AppTheme" >
+31-->D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:17:9-40
+32        <activity
+32-->D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:20:9-27:20
+33            android:name="ch.hsr.appquest.coincollector.MainActivity"
+33-->D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:21:13-41
+34            android:label="@string/app_name" >
+34-->D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:22:13-45
+35            <intent-filter>
+35-->D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:23:13-26:29
+36                <action android:name="android.intent.action.MAIN" />
+36-->D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:24:17-69
+36-->D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:24:25-66
+37
+38                <category android:name="android.intent.category.LAUNCHER" />
+38-->D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:25:17-77
+38-->D:\HSR\AppQuest2019\CoinCollector\app\src\main\AndroidManifest.xml:25:27-74
+39            </intent-filter>
+40        </activity>
+41
+42        <receiver android:name="org.altbeacon.beacon.startup.StartupBroadcastReceiver" >
+42-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:21:9-27:20
+42-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:21:19-87
+43            <intent-filter>
+43-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:22:13-26:29
+44                <action android:name="android.intent.action.BOOT_COMPLETED" />
+44-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:23:17-79
+44-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:23:25-76
+45                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+45-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:24:17-87
+45-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:24:25-84
+46                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+46-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:25:17-90
+46-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:25:25-87
+47            </intent-filter>
+48        </receiver>
+49
+50        <service
+50-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:29:9-34:38
+51            android:name="org.altbeacon.beacon.service.BeaconService"
+51-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:30:13-70
+52            android:enabled="true"
+52-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:31:13-35
+53            android:exported="false"
+53-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:32:13-37
+54            android:isolatedProcess="false"
+54-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:33:13-44
+55            android:label="beacon" />
+55-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:34:13-35
+56        <service
+56-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:35:9-38:40
+57            android:name="org.altbeacon.beacon.BeaconIntentProcessor"
+57-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:36:13-70
+58            android:enabled="true"
+58-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:37:13-35
+59            android:exported="false" />
+59-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:38:13-37
+60        <service
+60-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:39:9-48:19
+61            android:name="org.altbeacon.beacon.service.ScanJob"
+61-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:40:13-64
+62            android:permission="android.permission.BIND_JOB_SERVICE" >
+62-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:41:13-69
+63            <meta-data
+63-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:42:13-44:45
+64                android:name="immediateScanJobId"
+64-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:43:17-50
+65                android:value="208352939" />
+65-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:44:17-42
+66            <meta-data
+66-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:45:13-47:45
+67                android:name="periodicScanJobId"
+67-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:46:17-49
+68                android:value="208352940" />
+68-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:47:17-42
+69        </service>
+70        <service
+70-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:49:9-55:19
+71            android:name="org.altbeacon.bluetooth.BluetoothTestJob"
+71-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:50:13-68
+72            android:permission="android.permission.BIND_JOB_SERVICE" >
+72-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:51:13-69
+73            <meta-data
+73-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:52:13-54:46
+74                android:name="jobId"
+74-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:53:17-37
+75                android:value="1799803768" />
+75-->[org.altbeacon:android-beacon-library:2.16.3] C:\Users\Alexander\.gradle\caches\transforms-2\files-2.1\b82d177cb084e26ccc59af3f130f3683\android-beacon-library-2.16.3\AndroidManifest.xml:54:17-43
+76        </service>
+77    </application>
+78
+79</manifest>
